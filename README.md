@@ -5,6 +5,6 @@
 - 定义：保证每次操作**局部最优**，从而使得**结果最优**
 - 核心：局部最优 =》 全局最优
 - 题目：
-  - [455.分发饼干](src/main/java/leetcode/sub0455/Demo01.java)
+  - [455.分发饼干](src/main/java/leetcode/sub0455/README.md)
     - 时间：`O(n)`
     - 空间：`O(n log n)`
