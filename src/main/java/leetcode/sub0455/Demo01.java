@@ -17,7 +17,8 @@ public class Demo01 {
             int numOfCookie = cookies.length;
             int satisfy = 0;  // 满足度
             int i = 0;  // 当前饼干数量
-            if (numOfChild == 0 || numOfCookie == 0) {
+            // 0、边界问题：空队列(没有饼干 `0 <= s.length <= 3 * 10⁴`)
+            if (numOfCookie == 0) {
                 return satisfy;
             }
 

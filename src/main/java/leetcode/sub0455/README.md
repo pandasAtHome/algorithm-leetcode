@@ -71,10 +71,10 @@ if (cookies[i++] >= children[satisfy]) {
 
 ## 边界问题
 
-- 空队列(没有饼干 or 没有孩子)
+- 空队列(没有饼干 `0 <= s.length <= 3 * 10⁴`)
 
 ```java
-if (numOfChild == 0 || numOfCookie == 0) {
+if (numOfCookie == 0) {
     return satisfy;
 }
 ```
