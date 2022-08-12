@@ -48,7 +48,32 @@
 # 思路
 
 - 把2个数组从小到大排序
-- 最小饼干尺寸 =》最小胃口值
+
+```java
+// 1、从小到大排序：使用快排
+// 请参考：https://github.com/hustcc/JS-Sorting-Algorithm
+/* +++++ 时间 O(n log n) +++++ */
+/* ----- 空间 O(log n) ----- */
+Arrays.sort(children);
+Arrays.sort(cookies);
+```
+
+- 分配饼干：最小饼干尺寸 =》最小胃口值
+
+```java
+// 2.1、边界问题：小孩都吃饱 or 饼干分配完
+/* +++++ 遍历数组：时间 O(n) +++++ */
+while (satisfy < numOfChild && i < numOfCookie) {
+    // 2.2、满足判断
+    /* +++++ 满足度判断，遍历N次：时间 O(n) +++++ */
+    /* +++++ 饼干计数，遍历N次：时间 O(n) +++++ */
+    if (cookies[i++] >= children[satisfy]) {
+        // 2.2.1、`饼干尺寸 ≥ 胃口值` => 满足度+1
+        satisfy++;
+    }
+    // 2.2.2、`饼干尺寸 < 胃口值` => 丢弃
+}
+```
 
 # 实现
 
@@ -56,38 +81,7 @@
 
 - 饼干分配完 or 小孩都吃饱
 
-## 代码实现
-
-```java
-public int findContentChildren(int[] children, int[] cookies) {
-    // 1、从小到大排序：使用快排(请参考：https://github.com/hustcc/JS-Sorting-Algorithm)
-    /* +++++ 时间 O(n log n) +++++ */
-    /* ----- 空间 O(log n) ----- */
-    Arrays.sort(children);
-    Arrays.sort(cookies);
-
-    // 2、最小尺寸给最小胃口值
-    /* ----- 定义了一堆数值变量：空间 O(1) ----- */
-    int satisfy = 0;  // 满足度
-    int i = 0;  // 当前饼干数量
-    int numOfChild = children.length;
-    int numOfCookie = cookies.length;
-
-    // 2.1、边界问题：小孩都吃饱 or 饼干分配完
-    /* +++++ 遍历数组：时间 O(n) +++++ */
-    while (satisfy < numOfChild && i < numOfCookie) {
-        // 2.2、满足判断：`饼干尺寸 ≥ 胃口值` => 满足度+1
-        /* +++++ 满足度判断，遍历N次：时间 O(n) +++++ */
-        /* +++++ 饼干计数，遍历N次：时间 O(n) +++++ */
-        if (cookies[i++] >= children[satisfy]) {
-            satisfy++;
-        }
-        // `饼干尺寸 < 胃口值` => 丢弃
-    }
-    // 3、返回满足度
-    return satisfy;
-}
-```
+## [完整代码](Demo01.java)
 
 ## 复杂度
 
