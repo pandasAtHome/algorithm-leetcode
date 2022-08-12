@@ -12,6 +12,15 @@ public class Demo01 {
 
     class Solution {
         public int findContentChildren(int[] children, int[] cookies) {
+            /* ----- 定义了一堆数值变量：空间 O(1) ----- */
+            int numOfChild = children.length;
+            int numOfCookie = cookies.length;
+            int satisfy = 0;  // 满足度
+            int i = 0;  // 当前饼干数量
+            if (numOfChild == 0 || numOfCookie == 0) {
+                return satisfy;
+            }
+
             // 1、从小到大排序：使用快排(请参考：https://github.com/hustcc/JS-Sorting-Algorithm)
             /* +++++ 时间 O(n log n) +++++ */
             /* ----- 空间 O(log n) ----- */
@@ -19,12 +28,6 @@ public class Demo01 {
             Arrays.sort(cookies);
 
             // 2、最小尺寸给最小胃口值
-            /* ----- 定义了一堆数值变量：空间 O(1) ----- */
-            int satisfy = 0;  // 满足度
-            int i = 0;  // 当前饼干数量
-            int numOfChild = children.length;
-            int numOfCookie = cookies.length;
-
             // 2.1、边界问题：小孩都吃饱 or 饼干分配完
             /* +++++ 遍历数组：时间 O(n) +++++ */
             while (satisfy < numOfChild && i < numOfCookie) {

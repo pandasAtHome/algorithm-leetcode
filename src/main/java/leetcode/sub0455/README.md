@@ -61,17 +61,9 @@ Arrays.sort(cookies);
 - 分配饼干：最小饼干尺寸 =》最小胃口值
 
 ```java
-// 2.1、边界问题：小孩都吃饱 or 饼干分配完
-/* +++++ 遍历数组：时间 O(n) +++++ */
-while (satisfy < numOfChild && i < numOfCookie) {
-    // 2.2、满足判断
-    /* +++++ 满足度判断，遍历N次：时间 O(n) +++++ */
-    /* +++++ 饼干计数，遍历N次：时间 O(n) +++++ */
-    if (cookies[i++] >= children[satisfy]) {
-        // 2.2.1、`饼干尺寸 ≥ 胃口值` => 满足度+1
-        satisfy++;
-    }
-    // 2.2.2、`饼干尺寸 < 胃口值` => 丢弃
+if (cookies[i++] >= children[satisfy]) {
+    // 2.2.1、`饼干尺寸 ≥ 胃口值` => 满足度+1
+    satisfy++;
 }
 ```
 
@@ -79,7 +71,21 @@ while (satisfy < numOfChild && i < numOfCookie) {
 
 ## 边界问题
 
+- 空队列(没有饼干 or 没有孩子)
+
+```java
+if (numOfChild == 0 || numOfCookie == 0) {
+    return satisfy;
+}
+```
+
 - 饼干分配完 or 小孩都吃饱
+
+```java
+while (satisfy < numOfChild && i < numOfCookie) {
+    ...
+}
+```
 
 ## [完整代码](Demo01.java)
 
