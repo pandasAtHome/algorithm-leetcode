@@ -38,12 +38,39 @@ n == ratings.length
 
 - `n 个孩子站成一排` => `一个固定队列`
 - 每个孩子至少分配到 1 个糖果
+
+```java
+/* ----- 定义一个糖果数组：空间 O(n) ----- */
+int[] numOfCandy = new int[length];
+/* +++++ 遍历数组：时间 O(3n) +++++ */
+Arrays.fill(numOfCandy, 1);
+```
+
 - `相邻两个孩子` => `评分更高的孩子` => `获得更多的糖果`
+
+```java
+// `right分数 > left分数` => `right糖果 = left糖果 + 1`
+numOfCandy[i] = numOfCandy[i - 1] + 1;
+// `left分数 > right分数` => `left糖果 = max(left糖果, right糖果 + 1)`
+numOfCandy[i] = Math.max(numOfCandy[i], numOfCandy[i + 1] + 1);
+```
 
 # 思路
 
 - 从左往右遍历，找出右边较大者
   - `right分数 > left分数` => `right糖果 = left糖果 + 1`
+
+```java
+for (int i = 1; i < length; i++) {
+    // right = i,  left = i - 1
+    /* +++++ N次较大者判断：时间 O(n) +++++ */
+    if (ratings[i] > ratings[i - 1]) {
+        // `right分数 > left分数` => `right糖果 = left糖果 + 1`
+        numOfCandy[i] = numOfCandy[i - 1] + 1;
+    }
+}
+```
+
 - 从右往左遍历，找出左边较大者
   - `left分数 > right分数` => `left糖果 = max(left糖果, right糖果 + 1)`
     - 举例：
@@ -72,15 +99,46 @@ n == ratings.length
 
     ```
 
+```java
+for (int i = length - 2; i >= 0; i--) {
+    // left = i,  right = i + 1
+    /* +++++ N次较大者判断：时间 O(n) +++++ */
+    if (ratings[i] > ratings[i + 1]) {
+        // `left分数 > right分数` => `left糖果 = max(left糖果, right糖果 + 1)`
+        numOfCandy[i] = Math.max(numOfCandy[i], numOfCandy[i + 1] + 1);
+    }
+}
+```
+
 # 实现
 
 ## 边界问题
 
 - 只有一个孩子(1 <= n <= 2 * 10⁴)
+
+```java
+if (length < 2) {
+    return length;
+}
+```
+
 - 从左往右遍历
   - `[1, length)`
+
+```java
+for (int i = 1; i < length; i++) {
+    ...
+}
+```
+
 - 从右往左遍历
   - `[0, length - 2]`
+
+```java
+for (int i = length - 2; i >= 0; i--) {
+    ...
+}
+```
 
 ## [代码实现](Demo01.java)
 
