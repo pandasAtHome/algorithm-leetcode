@@ -31,12 +31,18 @@ n 个孩子站成一排。给你一个整数数组 ratings 表示每个孩子的
 n == ratings.length 
 1 <= n <= 2 * 10⁴ 
 0 <= ratings[i] <= 2 * 10⁴ 
-
 ```
 
 # 读题
 
 - `n 个孩子站成一排` => `一个固定队列`
+- 每个孩子至少分配到 1 个糖果
+- `相邻两个孩子` => `评分更高的孩子` => `获得更多的糖果`
+
+# 法一：贪心算法
+
+## 思路
+
 - 每个孩子至少分配到 1 个糖果
 
 ```java
@@ -45,17 +51,6 @@ int[] numOfCandy = new int[length];
 /* +++++ 遍历数组：时间 O(3n) +++++ */
 Arrays.fill(numOfCandy, 1);
 ```
-
-- `相邻两个孩子` => `评分更高的孩子` => `获得更多的糖果`
-
-```java
-// `right分数 > left分数` => `right糖果 = left糖果 + 1`
-numOfCandy[i] = numOfCandy[i - 1] + 1;
-// `left分数 > right分数` => `left糖果 = max(left糖果, right糖果 + 1)`
-numOfCandy[i] = Math.max(numOfCandy[i], numOfCandy[i + 1] + 1);
-```
-
-# 思路
 
 - 从左往右遍历，找出右边较大者
   - `right分数 > left分数` => `right糖果 = left糖果 + 1`
@@ -110,9 +105,20 @@ for (int i = length - 2; i >= 0; i--) {
 }
 ```
 
-# 实现
+- 统计需要发放的糖果数量
 
-## 边界问题
+```java
+int totalNumOfCandy = 0;
+/* +++++ 数组遍历：时间 O(n) +++++ */
+for (int num : numOfCandy) {
+    /* +++++ 数值累加：时间 O(n) +++++ */
+    totalNumOfCandy += num;
+}
+```
+
+## 实现
+
+### 边界问题
 
 - 只有一个孩子(1 <= n <= 2 * 10⁴)
 
@@ -140,9 +146,9 @@ for (int i = length - 2; i >= 0; i--) {
 }
 ```
 
-## [代码实现](Demo01.java)
+### [代码实现](Demo01.java)
 
-## 复杂度
+### 复杂度
 
 类型 | 复杂度 | 说明
 :--- |:--- |:---

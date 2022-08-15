@@ -17,31 +17,31 @@ public class Demo01 {
             int numOfCookie = cookies.length;
             int satisfy = 0;  // 满足度
             int i = 0;  // 当前饼干数量
-            // 0、边界问题：空队列(没有饼干 `0 <= s.length <= 3 * 10⁴`)
+            // 1、边界问题：空队列(没有饼干 `0 <= s.length <= 3 * 10⁴`)
             if (numOfCookie == 0) {
                 return satisfy;
             }
 
-            // 1、从小到大排序：使用快排(请参考：https://github.com/hustcc/JS-Sorting-Algorithm)
+            // 2、把2个数组从小到大排序：使用快排(请参考：https://github.com/hustcc/JS-Sorting-Algorithm)
             /* +++++ 时间 O(n log n) +++++ */
             /* ----- 空间 O(log n) ----- */
             Arrays.sort(children);
             Arrays.sort(cookies);
 
-            // 2、最小尺寸给最小胃口值
-            // 2.1、边界问题：小孩都吃饱 or 饼干分配完
+            // 3、分配饼干：最小尺寸给最小胃口值
+            // 3.1、边界问题：小孩都吃饱 or 饼干分配完
             /* +++++ 遍历数组：时间 O(n) +++++ */
             while (satisfy < numOfChild && i < numOfCookie) {
-                // 2.2、满足判断
+                // 3.2、满足判断
                 /* +++++ 满足度判断，遍历N次：时间 O(n) +++++ */
                 /* +++++ 饼干计数，遍历N次：时间 O(n) +++++ */
                 if (cookies[i++] >= children[satisfy]) {
-                    // 2.2.1、`饼干尺寸 ≥ 胃口值` => 满足度+1
+                    // 3.3、`饼干尺寸 ≥ 胃口值` => 满足度+1
                     satisfy++;
                 }
-                // 2.2.2、`饼干尺寸 < 胃口值` => 丢弃
+                // 3.4、`饼干尺寸 < 胃口值` => 丢弃
             }
-            // 3、返回满足度
+            // 4、返回满足度
             return satisfy;
         }
     }

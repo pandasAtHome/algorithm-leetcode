@@ -45,7 +45,9 @@
 - $ 1个孩子 = 1块饼干 $
 - $ 满足 = 胃口值 g[i] \ge 饼干尺寸 s[j] $
 
-# 思路
+# 法一：贪心算法
+
+## 思路
 
 - 把2个数组从小到大排序
 
@@ -58,7 +60,8 @@ Arrays.sort(children);
 Arrays.sort(cookies);
 ```
 
-- 分配饼干：最小饼干尺寸 =》最小胃口值
+- 分配饼干：最小尺寸给最小胃口值
+  - `饼干尺寸 ≥ 胃口值` => 满足度+1
 
 ```java
 if (cookies[i++] >= children[satisfy]) {
@@ -67,9 +70,11 @@ if (cookies[i++] >= children[satisfy]) {
 }
 ```
 
-# 实现
+- 返回满足度
 
-## 边界问题
+## 实现
+
+### 边界问题
 
 - 空队列(没有饼干 `0 <= s.length <= 3 * 10⁴`)
 
@@ -87,9 +92,9 @@ while (satisfy < numOfChild && i < numOfCookie) {
 }
 ```
 
-## [完整代码](Demo01.java)
+### [完整代码](Demo01.java)
 
-## 复杂度
+### 复杂度
 
 类型 | 复杂度 | 说明
 :--- |:--- |:---

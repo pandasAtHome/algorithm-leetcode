@@ -41,31 +41,41 @@ intervals[i].length == 2
 - 需要移除区间的最小数量
 - 剩余区间互不重叠
 
-# 思路
+# 法一：贪心算法
 
-- 按区间 end 排序：`[start, end]`
+## 思路
+
+- 按 end 值，排列区间顺序
 
 ```java
 Arrays.sort(intervals, (o1, o2) -> o1[1] - o2[1]);
 ```
 
-- 记录当前 end 值：`curEnd`
+- 记录上一区间的结束值
 
 ```java
-int curEnd = intervals[0][1];
+int prevEnd = intervals[0][1];
 ```
 
-- 移除 `nextStart` < `curEnd`
+- 排除不符合的区间
+  - 不合规 => 移除
+  - 合规 => 使用
 
 ```java
-if (intervals[i][0] < curEnd) {
+if (intervals[i][0] < prevEnd) {
+    // /4.1、不合规 => 移除
     result++;
+} else {
+    // /4.2、合规 => 使用
+    prevEnd = intervals[i][1];
 }
 ```
 
-# 实现
+- 返回移除的区间数量
 
-## 边界问题
+## 实现
+
+### 边界问题
 
 - 只有一个区间，无需移除
 
@@ -75,7 +85,7 @@ if (length < 2) {
 }
 ```
 
-- 遍历所有区间：`[1, length)`
+- 从第二个区间开始匹配
 
 ```java
 for (int i = 1; i < length; i++) {
@@ -83,9 +93,9 @@ for (int i = 1; i < length; i++) {
 }
 ```
 
-## [代码实现](Demo01.java)
+### [代码实现](Demo01.java)
 
-## 复杂度
+### 复杂度
 
 类型 | 复杂度 | 说明
 :--- |:--- |:---
