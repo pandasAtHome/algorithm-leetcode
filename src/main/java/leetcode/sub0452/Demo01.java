@@ -29,7 +29,8 @@ public class Demo01 {
             }
 
             // 2、按气球所在x轴的 xEnd 排序
-            /* +++++ 二分排序：时间 O(log n) +++++ */
+            /* ----- 空间 O(log n) ----- */
+            /* +++++ 时间 O(n log n) +++++ */
             Arrays.sort(points, (a, b) -> Integer.compare(a[1], b[1]));
 
             // 射出弓箭的数量

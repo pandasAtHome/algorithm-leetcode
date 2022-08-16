@@ -98,5 +98,5 @@ while (satisfy < numOfChild && i < numOfCookie) {
 
 类型 | 复杂度 | 说明
 :--- |:--- |:---
-空间 | `O(n log n)` | `2 * O(n log n)` + `4 * O(1)` </br> - `O(n log n)` : 2次快排 </br> - `O(1)` : 4个数值变量
-时间 | `O(n)` | `2 * O(n log n)` + `3 * O(n)` </br> - `O(n log n)` : 2次快排 </br> - `O(n)` : while 遍历 and 满足度判断 and 饼干计数
+空间 | `O(log n)` | `2 * O(log n)` + `4 * O(1)` </br> - `O(log n)` : 2次快排 </br> - `O(1)` : 4个数值变量
+时间 | `O(n log n)` | `2 * O(n log n)` + `3 * O(n)` </br> - `O(n log n)` : 2次快排 </br> - `O(n)` : while 遍历 and 满足度判断 and 饼干计数

@@ -23,8 +23,8 @@ public class Demo01 {
             }
 
             // 2、把2个数组从小到大排序：使用快排(请参考：https://github.com/hustcc/JS-Sorting-Algorithm)
-            /* +++++ 时间 O(n log n) +++++ */
             /* ----- 空间 O(log n) ----- */
+            /* +++++ 时间 O(n log n) +++++ */
             Arrays.sort(children);
             Arrays.sort(cookies);
 

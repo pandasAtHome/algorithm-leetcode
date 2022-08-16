@@ -17,7 +17,8 @@ public class Demo01 {
                 return 0;
             }
             // 2、按 end 值，排列区间顺序
-            /* +++++ 二分排序：时间 O(log n) +++++ */
+            /* ----- 空间 O(log n) ----- */
+            /* +++++ 时间 O(n log n) +++++ */
             // (1) Comparator 比较类：(before Java8)
             //  - 优点：效率较高
             //  - 缺点：代码量多，可读性差
