@@ -20,3 +20,6 @@
   - [452.用最少数量的箭引爆气球](src/main/java/leetcode/sub0452/README.md)(<b style="color: orange">中等</b>)(AC: 2022-08-16)
     - 空间：`O(log n)`
     - 时间：`O(n log n)`
+  - [763.划分字母区间](src/main/java/leetcode/sub0763/README.md)(<b style="color: orange">中等</b>)(AC: 2022-08-17)
+    - 空间：`O(n)`
+    - 时间：`O(n)`
