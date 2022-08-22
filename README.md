@@ -26,3 +26,6 @@
   - [122.买卖股票的最佳时机 II](src/main/java/leetcode/sub0122/README.md)(<b style="color: #2db55d">简单</b>)(AC: 2022-08-18)
     - 空间：`O(1)`
     - 时间：`O(n)`
+  - [406.根据身高重建队列](src/main/java/leetcode/sub0406/README.md)(<b style="color: orange">中等</b>)(AC: 2022-08-22)
+    - 空间：`O(n)`
+    - 时间：`O(n^2)`
