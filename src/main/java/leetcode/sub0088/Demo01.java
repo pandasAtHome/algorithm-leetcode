@@ -11,6 +11,10 @@ public class Demo01 {
         solution.merge(nums1, 3, new int[]{2, 5, 6}, 3);
         System.out.println(Arrays.toString(nums1) + "[1, 2, 2, 3, 5, 6]");
 
+        nums1 = new int[]{2, 5, 6, 0, 0, 0};
+        solution.merge(nums1, 3, new int[]{1, 2, 3}, 3);
+        System.out.println(Arrays.toString(nums1) + "[1, 2, 2, 3, 5, 6]");
+
         nums1 = new int[]{1};
         solution.merge(nums1, 1, new int[]{}, 0);
         System.out.println(Arrays.toString(nums1) + "[1]");
@@ -26,12 +30,12 @@ public class Demo01 {
      */
     class Solution {
         public void merge(int[] nums1, int m, int[] nums2, int n) {
-            // 1、边界问题：`n == 0`，无需操作
+            // 1、边界问题1：`n == 0`，无需操作
             if (n == 0) {
                 // 最好情况：空间 => 无; 时间 => O(1)
                 return;
             }
-            // 2、边界问题：`m == 0` or `num1的最后一个元素 <= num2的第一个元素`
+            // 2、边界问题2：`m == 0` or 细节问题1：`num1的最后一个元素 <= num2的第一个元素`
             if (m == 0 || nums1[m - 1] <= nums2[0]) {
                 // 其次情况：空间 => O(1); 时间 => O(n)
                 for (int j = 0; j < n; j++) {
@@ -68,10 +72,14 @@ public class Demo01 {
                     n--;
                 }
             }
-            // 4、右边剩余的入队
-            /* +++++ 循环 & 赋值 & 2次指针挪动：O(4n) +++++ */
+            /* 4、右边剩余的入队
+             * 细节问题2：
+             * - 当 右数组 还有剩余元素未入队时，pos == n
+             * - 所以此时可以仅挪动 `右指针 n`，而无需挪动 `位置指针 pos`
+             */
+            /* +++++ 循环 & 赋值 & 2次指针挪动：O(3n) +++++ */
             while (n >= 0) {
-                nums1[pos--] = nums2[n--];
+                nums1[n] = nums2[n--];
             }
         }
     }
@@ -96,16 +104,21 @@ public class Demo01 {
             int pos = m-- + n-- - 1;
             while (m >= 0 && n >= 0) {
                 if (nums1[m] > nums2[n]) {
+                    // 3.1、左边大，左边入队，移动左指针
                     nums1[pos--] = nums1[m--];
                 } else if (nums1[m] == nums2[n]) {
+                    // 3.2、一样大，都入队，左右指针都移动
                     nums1[pos--] = nums1[m--];
                     nums1[pos--] = nums2[n--];
                 } else {
+                    // 3.3、右边大，右边入队，移动右指针
                     nums1[pos--] = nums2[n--];
                 }
             }
+            // 4、右边剩余的入队
+            /* +++++ 循环 & 赋值 & 指针挪动：O(3n) +++++ */
             while (n >= 0) {
-                nums1[pos--] = nums2[n--];
+                nums1[n] = nums2[n--];
             }
         }
     }
@@ -128,8 +141,10 @@ public class Demo01 {
                     nums1[pos--] = nums2[n--];
                 }
             }
+            // 2、右边剩余的入队
+            /* +++++ 循环 & 赋值 & 2次指针挪动：O(3n) +++++ */
             while (n >= 0) {
-                nums1[pos--] = nums2[n--];
+                nums1[n] = nums2[n--];
             }
         }
     }
