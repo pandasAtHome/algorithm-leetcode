@@ -66,7 +66,7 @@ if (i == end) {
 
 ### 细节问题
 
-- 转为字符数组处理([详情>>>](/java-knowledge/string/toCharArray_vs_charAt.md))
+- 转为字符数组处理([详情>>>](/knowledge/java/string/toCharArray_vs_charAt.md))
 
 ### [代码实现](Demo01.java)
 
