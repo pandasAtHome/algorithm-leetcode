@@ -52,4 +52,24 @@ public class Demo01 {
             return false;
         }
     }
+
+    // 数学解法：费马平方和定理
+    class Solution2 {
+        public boolean judgeSquareSum(int c) {
+            for (int base = 2; base * base < c; base++) {
+                if (c % base != 0) {
+                    continue;
+                }
+                int exp = 0;
+                while (c % base == 0) {
+                    c /= base;
+                    exp++;
+                }
+                if (base % 4 != 3 && exp % 2 != 0) {
+                    return false;
+                }
+            }
+            return c % 4 != 3;
+        }
+    }
 }
