@@ -12,8 +12,10 @@ public class Demo01 {
 
         System.out.println(solution.findLongestWord("abpcplea", Arrays.asList("ale", "panda", "apple", "monkey", "plea")) + " = apple");
         System.out.println(solution.findLongestWord("abpcplea", Arrays.asList("a","b","c")) + " = a");
+        System.out.println(solution.findLongestWord("abpcplea", Arrays.asList("ale","apple","monkey","plea", "abpcplaaa","abpcllllll","abccclllpppeeaaaa")) + " = apple");
     }
 
+    // 双指针 + 排序
     class Solution {
         public String findLongestWord(String s, List<String> dictionary) {
             /* 1、对字符串数组，按元素长度倒序
@@ -67,6 +69,57 @@ public class Demo01 {
 
             // 5、没找到目标值
             return "";
+        }
+    }
+
+    /**
+     * 动态规划 + 排序
+     *  - 单纯使用 动态规划，耗时更短，但消耗的资源多
+     */
+    class Solution2 {
+        public String findLongestWord(String s, List<String> dictionary) {
+            int n = s.length();
+            // 1、分析：字符串中，当前字符 & 下一字符的索引矩阵
+            int[][] nextCharMatrix = parseNextCharIndexMatrix(s);
+            // 2、按单词长度倒序，字母序较小者排前面
+            dictionary.sort((s1, s2) -> s1.length() == s2.length() ? s1.compareTo(s2) : s2.length() - s1.length());
+            // 3、单词匹配
+            // 下一字符，单词字符指针，字符串s指针，单词长度
+            int idxN, idxW, idxS, m;
+            for (String word : dictionary) {
+                idxW = idxS = 0;
+                m = word.length();
+                while (idxW < m) {
+                    idxN = nextCharMatrix[idxS][word.charAt(idxW) - 'a'];
+                    if (idxN == n) {
+                        break;
+                    }
+                    idxW++;
+                    idxS = idxN + 1;
+                }
+                if (idxW == m) {
+                    return word;
+                }
+            }
+            return "";
+        }
+
+        // 下一个字符的索引矩阵
+        private int[][] parseNextCharIndexMatrix(String s) {
+            int n = s.length();
+            int[][] charMatrix = new int[n + 1][26];
+            Arrays.fill(charMatrix[n], n);
+            for (int i = n - 1; i >= 0; --i) {
+                int ch = s.charAt(i);
+                for (int j = 0; j < 26; ++j) {
+                    if (ch == (char) ('a' + j)) {
+                        charMatrix[i][j] = i;
+                    } else {
+                        charMatrix[i][j] = charMatrix[i + 1][j];
+                    }
+                }
+            }
+            return charMatrix;
         }
     }
 }
