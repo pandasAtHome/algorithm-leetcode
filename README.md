@@ -47,3 +47,22 @@
     - `双指针`：一步一步移动
     - `二分查找`：每次移动半个区间长度
 - [题目](algorithm-training/2.double_pointer.md)
+
+# 排序算法
+
+## 比较
+
+| 算法                                             | 平均时间复杂度      | 最优时间复杂度      | 最坏时间复杂度      | 空间复杂度      | 排序方式        | 稳定性 |
+|:-----------------------------------------------|:-------------|:-------------|:-------------|:-----------|:------------|:----|
+| [快速排序](/src/main/java/sort/QuickSort.java)     | `O(n log n)` | `O(n log n)` | `O(n^2)`     | `O(log n)` | `in-place`  | 不稳定 |
+| [归并排序](/src/main/java/sort/MergeSort.java)     | `O(n log n)` | `O(n log n)` | `O(n log n)` | `O(log n)` | `out-place` | 稳定  |
+| [插入排序](/src/main/java/sort/InsertionSort.java) | `O(n^2)`     | `O(n)`       | `O(n^2)`     | `O(1)`     | `in-place`  | 稳定  |
+| [冒泡排序](/src/main/java/sort/BubbleSort.java)    | `O(n^2)`     | `O(n)`       | `O(n^2)`     | `O(1)`     | `in-place`  | 稳定  |
+| [选择排序](/src/main/java/sort/SelectionSort.java) | `O(n^2)`     | `O(n^2)`     | `O(n^2)`     | `O(1)`     | `in-place`  | 不稳定 |
+
+## 说明
+
+- 排序方式：
+  - `in-place`：占用常数内存
+  - `out-place`：占用额外内存
+- 稳定性：排序前后，值相同的元素，位置是否发生变化
