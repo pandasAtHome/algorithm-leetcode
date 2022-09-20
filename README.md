@@ -1,6 +1,6 @@
 说明：此练习是基于《LeetCode 101: A LeetCode Grinding Guide (C++ Version)》的
 
-# 贪心算法
+# 1.贪心算法
 
 - 定义：保证每次操作**局部最优**，从而使得**结果最优**
 - 核心：局部最优 =》 全局最优
@@ -12,7 +12,7 @@
     - `从右到左` => `求两两间最优解` => `兼顾 从左到右 得到的最优解` => `最终总体最优解`
 - [题目](algorithm-training/1.greedy.md)
 
-# 双指针
+# 2.双指针
 
 - 定义：遍历数组时，使用两个指针指向不同的元素，从而协同完成任务
 - 延伸：
@@ -33,7 +33,7 @@
     - 场景：有序数组查找目标值
 - [题目](algorithm-training/2.double_pointer.md)
 
-# 二分查找
+# 3.二分查找
 
 - 定义：每次查找时，将待查找区间分成两部分，并只取一部分继续查找
 - 场景应用：
@@ -48,9 +48,9 @@
     - `二分查找`：每次移动半个区间长度
 - [题目](algorithm-training/2.double_pointer.md)
 
-# 排序算法
+# 4.排序算法
 
-## 比较
+## 4.1比较
 
 | 算法                                             | 平均时间复杂度      | 最优时间复杂度      | 最坏时间复杂度      | 空间复杂度      | 排序方式        | 稳定性 |
 |:-----------------------------------------------|:-------------|:-------------|:-------------|:-----------|:------------|:----|
@@ -60,18 +60,18 @@
 | [冒泡排序](/src/main/java/sort/BubbleSort.java)    | `O(n^2)`     | `O(n)`       | `O(n^2)`     | `O(1)`     | `in-place`  | 稳定  |
 | [选择排序](/src/main/java/sort/SelectionSort.java) | `O(n^2)`     | `O(n^2)`     | `O(n^2)`     | `O(1)`     | `in-place`  | 不稳定 |
 
-## 说明
+## 4.2说明
 
 - 排序方式：
   - `in-place`：占用常数内存
   - `out-place`：占用额外内存
 - 稳定性：排序前后，值相同的元素，位置是否发生变化
 
-## [题目](algorithm-training/4.sort.md)
+## 4.3.[题目](algorithm-training/4.sort.md)
 
-# 搜索算法
+# 5.搜索算法
 
-## 深度优先搜索：DFS
+## 5.1.深度优先搜索：DFS
 
 - 特点：总是优先遍历新节点
 - 实现模型：
@@ -87,7 +87,7 @@
   - 辅函数：
     - 递归调用
 
-### [回溯法](/src/main/java/leetcode/sub0046/Demo01.java)
+### 5.1.1.[回溯法](/src/main/java/leetcode/sub0046/Demo01.java)
 
 - 核心：采用试错的思想，分步的解决一个问题
 - 原理：
@@ -99,9 +99,9 @@
   - 按引用传递状态
   - 递归结束后，归还所有状态
 
-## 广度优先搜索：BFS
+## 5.2.广度优先搜索：BFS
 
-## [并查集](/src/main/java/search/UnionFind.java)
+## 5.3.[并查集](/src/main/java/search/UnionFind.java)
 
 - 描述：
   - 一种数据结构
@@ -118,4 +118,4 @@
   - 不交集森林
   - 连通分量
 
-## [题目](algorithm-training/5.first_search.md)
+## 5.4.[题目](algorithm-training/5.first_search.md)
