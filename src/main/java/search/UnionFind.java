@@ -19,7 +19,7 @@ public class UnionFind<E> {
 
     // 新增节点
     public void add(E node) {
-        if (parent.containsKey(node)) {
+        if (!parent.containsKey(node)) {
             parent.put(node, null);
             connectNum++;
         }
