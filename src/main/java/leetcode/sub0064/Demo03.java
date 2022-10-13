@@ -1,8 +1,8 @@
 package leetcode.sub0064;
 
-public class Demo02 {
+public class Demo03 {
     public static void main(String[] args) {
-        Solution solution = new Demo02().new Solution();
+        Solution solution = new Demo03().new Solution();
         int[][] grid;
         grid = new int[][]{
                 {1, 3}
@@ -25,32 +25,28 @@ public class Demo02 {
         public int minPathSum(int[][] grid) {
             int rows = grid.length;
             int cols = grid[0].length;
-            // 1、定义一个列表，用于记录到达当前格子的最短距离
-            int[] dp = new int[cols];
 
-            // 2、初始化第一个格子距离为其本身
-            dp[0] = grid[0][0];
-
+            // 3、计算【左边界上的格子距离，由于边界左边没有格子，所以只需累计从上一个到当前格子的距离
+            for (int row = 1; row < rows; row++) {
+                grid[row][0] += grid[row - 1][0];
+            }
             // 4、计算【上边界】上的格子距离，由于边界上边没有格子，所以只需累计从左边一个到当前格子的距离
             for (int col = 1; col < cols; col++) {
-                dp[col] = dp[col - 1] + grid[0][col];
+                grid[0][col] += grid[0][col - 1];
             }
             // 5、每次只能【向右】或【向下】移动，反向思考，只能从【左】或【上】到达当前格子
-            int left;
+            int left, up;
             // 6、计算到达中间格子的最短距离
             for (int row = 1; row < rows; row++) {
-                for (int col = 0; col < cols; col++) {
+                up = row - 1;
+                for (int col = 1; col < cols; col++) {
                     left = col - 1;
-                    if (left < 0) {
-                        dp[col] += grid[row][col];
-                    } else {
-                        // 6.1、到达当前格子的距离 = 当前格子距离 + min(到达左边格子的最短距离, 到达上边格子的最短距离)
-                        dp[col] = grid[row][col] + Math.min(dp[col - 1], dp[col]);
-                    }
+                    // 6.1、到达当前格子的距离 = 当前格子距离 + min(到达左边格子的最短距离, 到达上边格子的最短距离)
+                    grid[row][col] += Math.min(grid[row][left], grid[up][col]);
                 }
             }
             // 7、返回最右下角的格子（即 最短距离）
-            return dp[cols - 1];
+            return grid[rows - 1][cols - 1];
         }
     }
 }
