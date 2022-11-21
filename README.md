@@ -163,6 +163,60 @@
   - 求所有路径：优先搜索
   - 本质区别：动态规划保存子问题的解，避免重复计算
 
+## 6.0.解题思路
+
+- 例子：leetcode [322. 零钱兑换](https://leetcode.cn/problems/coin-change/)
+
+### 6.0.1.暴力的递归解法
+
+- [代码实现](src/main/java/leetcode/dynamic_programming/sub0322/Demo01.java)
+
+- 画出递归树，用于优化
+
+![暴力解法](.assets/6-0-1-暴力解法.drawio.png)
+
+- `复杂度 = 子问题个数 * 单个子问题耗时`
+  - `子问题个数` : `O(2^n)`
+  - `单个子问题耗时` : `O(1)`
+    - 无循环
+- 低效原因：存在大量重复计算
+  - 如：
+    - `fib(9)` 被计算了 2次
+    - ...
+- 解决措施：动态规划 - 重叠子问题
+
+### 6.0.2.带备忘录的递归解法
+
+- 动态规划的雏形：`自顶向下`
+
+- [代码实现](src/main/java/leetcode/dynamic_programming/sub0322/Demo02.java)
+
+- 画出递归树，用于优化
+  - 只需计算`绿色`的部分
+  - 黄色、蓝色 等都是重复计算
+
+![暴力解法](.assets/6-0-2-备忘录+递归解法.drawio.png)
+
+- `复杂度 = 子问题个数 * 单个子问题耗时`
+  - `子问题个数` : `O(kn)`
+  - `单个子问题耗时` : `O(1)`
+
+### 6.0.3.非递归的动态规划解法
+
+- 真正的动态规划：`自底向上`
+- [代码实现](src/main/java/leetcode/dynamic_programming/sub0322/Demo01.java)
+- 状态转移方程
+  - `n` : 目标余额
+  - $c_i$ : 硬币面值
+
+$$
+f(n) =
+\begin{cases}
+  0, \qquad\qquad\qquad\qquad\qquad\qquad\qquad n = 0 \\
+  \min\{{f(n - c_i)} + 1 \ | \ c_i \in [1, k] \}, \qquad n > 0
+\end{cases}
+$$
+
 ## 6.1.分割类型
 
 ## 6.2.子序列类型
@@ -188,3 +242,9 @@
   - `sell` : 卖出后，获得的最大利润
 
 ## 6.5.[题目](algorithm-training/6.dynamic_programming.md)
+
+# 7.分治算法
+
+- 定义：将**原问题**分为**子问题**，再将子问题进行处理合并，从而实现对原问题的求解
+
+## 7.2.[题目](algorithm-training/7.devide_and_conquer.md)

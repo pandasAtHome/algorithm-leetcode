@@ -10,26 +10,34 @@ public class Demo02 {
         System.out.println(solution.coinChange(new int[]{1}, 0) + " = 0");
     }
 
+    // 阶段二：带有备忘录的递归解法
     class Solution {
         public int coinChange(int[] coins, int amount) {
-            int n = coins.length;
-            int[][] dp = new int[amount + 1][n + 1];
+            int[] mem = new int[amount + 1];
             for (int i = 1; i <= amount; i++) {
-                dp[i][0] = amount + 1;
+                mem[i] = -2;
             }
-            int coin;
-            for (int i = 1; i <= amount; i++) {
-                for (int j = 1; j <= n; j++) {
-                    coin = coins[j - 1];
-                    if (i >= coin) {
-                        dp[i][j] = Math.min(dp[i][j - 1], dp[i - coin][j] + 1);
-                    } else {
-                        dp[i][j] = dp[i][j - 1];
-                    }
-                }
-            }
+            return helper(mem, coins, amount);
+        }
 
-            return dp[amount][n] > amount ? -1 : dp[amount][n];
+        private int helper(int[] mem, int[] coins, int amount) {
+            if (mem[amount] != -2) {
+                return mem[amount];
+            }
+            int res = Integer.MAX_VALUE;
+            int temp;
+            for (int coin : coins) {
+                if (coin > amount) {
+                    continue;
+                }
+                temp = helper(mem, coins, amount - coin);
+                if (temp == -1) {
+                    continue;
+                }
+                res = Math.min(res, temp + 1);
+            }
+            mem[amount] = res == Integer.MAX_VALUE ? -1 : res;
+            return mem[amount];
         }
     }
 }
